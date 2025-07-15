@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "plan-mcp": {
+      "type": "stdio",
+      "command": "python",
+      "args": [
+        "/home/zty/plan-mcp/run_mcp.py"
+      ],
+      "env": {}
+    }
+  }
+}

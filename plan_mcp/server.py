@@ -179,15 +179,12 @@ async def main() -> None:
     """Main entry point for the stdio server."""
     global gemini_client, project_planner, code_reviewer, execution_analyzer
     
-    logger.info("Starting Plan-MCP stdio server")
-    
     # 验证配置
     try:
         config = get_config()
         config.validate_config()
     except ValueError as e:
-        logger.error(f"配置错误: {e}")
-        logger.error("请确保您已经设置了 GEMINI_API_KEY 环境变量，或在项目根目录创建了 .env 文件。")
+        # Exit silently for MCP - don't log to stderr during connection
         return
     
     # Initialize tools
@@ -196,13 +193,17 @@ async def main() -> None:
         project_planner = ProjectPlanner(gemini_client)
         code_reviewer = CodeReviewer(gemini_client)
         execution_analyzer = ExecutionAnalyzer(gemini_client)
-        logger.info("Plan-MCP tools initialized successfully")
     except Exception as e:
-        logger.error(f"Failed to initialize tools: {e}")
+        # Exit silently for MCP
         return
 
+    # Start the MCP server
     async with stdio_server() as (read_stream, write_stream):
-        await server.run(read_stream, write_stream, server.create_initialization_options())
+        await server.run(
+            read_stream, 
+            write_stream, 
+            server.create_initialization_options()
+        )
 
 
 if __name__ == "__main__":
