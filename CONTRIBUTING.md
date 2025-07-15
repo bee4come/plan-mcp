@@ -49,13 +49,11 @@ pytest
 
 1. Update version in `pyproject.toml`
 2. Update `CHANGELOG.md` with new features/fixes
-3. Create and push a git tag:
+3. Build and publish to PyPI:
 ```bash
-git tag v1.0.1
-git push origin v1.0.1
+python -m build
+twine upload dist/*
 ```
-
-This will automatically trigger the PyPI release via GitHub Actions.
 
 ### Testing Releases
 

@@ -18,13 +18,19 @@ from .tools.execution_analyzer import ExecutionAnalyzer
 from .tools.project_planner import ProjectPlanner
 from .utils.logger import logger
 
+# 验证配置
+try:
+    config = get_config()
+    config.validate_config()
+except ValueError as e:
+    logger.error(f"配置错误: {e}")
+    logger.error("请确保您已经设置了 GEMINI_API_KEY 环境变量，或在项目根目录创建了 .env 文件。")
+    exit(1)
+
 # Create server instance
 server = Server("plan-mcp")
 
 # Initialize tools
-config = get_config()
-config.validate_config()
-
 gemini_client = GeminiClient()
 project_planner = ProjectPlanner(gemini_client)
 code_reviewer = CodeReviewer(gemini_client)

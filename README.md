@@ -193,8 +193,9 @@ mypy plan_mcp/
 ### Common Issues
 
 1. **"GEMINI_API_KEY not found"**
-   - Ensure your API key is set in environment variables
-   - Check that the environment variable is loaded
+   - Ensure your API key is set in environment variables: `export GEMINI_API_KEY="your_key_here"`
+   - Or create a `.env` file in your working directory with `GEMINI_API_KEY=your_key_here`
+   - Get your API key from: https://makersuite.google.com/app/apikey
 
 2. **Connection errors**
    - Verify your internet connection
