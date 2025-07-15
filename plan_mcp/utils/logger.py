@@ -1,6 +1,7 @@
 """Logging configuration for Plan-MCP."""
 
 import sys
+
 from loguru import logger
 
 from ..config import get_config
@@ -9,10 +10,10 @@ from ..config import get_config
 def setup_logger() -> None:
     """Set up the logger with the configured level and format."""
     config = get_config()
-    
+
     # Remove default logger
     logger.remove()
-    
+
     # Add custom logger with our format
     logger.add(
         sys.stderr,
@@ -20,7 +21,7 @@ def setup_logger() -> None:
         format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
         colorize=True,
     )
-    
+
     # Optionally add file logging
     if config.log_level == "DEBUG":
         logger.add(
