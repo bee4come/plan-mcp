@@ -1,0 +1,94 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plan-mcp"
+version = "1.0.0"
+description = "AI-powered project planning and code review MCP server using Gemini"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "bee4come", email = "bee4come@gmail.com"}
+]
+keywords = ["mcp", "gemini", "ai", "code-review", "project-planning", "claude"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "google-generativeai>=0.8.0,<1.0.0",
+    "python-dotenv>=1.0.0,<2.0.0",
+    "pydantic>=2.0.0,<3.0.0",
+    "mcp>=1.2.0,<2.0.0",
+    "loguru>=0.7.0,<1.0.0",
+    "rich>=13.0.0,<15.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "black>=24.0.0",
+    "ruff>=0.3.0",
+    "mypy>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/bee4come/plan-mcp"
+Repository = "https://github.com/bee4come/plan-mcp"
+Documentation = "https://github.com/bee4come/plan-mcp#readme"
+"Bug Tracker" = "https://github.com/bee4come/plan-mcp/issues"
+
+[project.scripts]
+plan-mcp = "plan_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["plan_mcp*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.isort]
+known-third-party = ["google", "pydantic", "loguru", "mcp"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "-ra -q"
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
