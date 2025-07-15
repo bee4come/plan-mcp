@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "plan-mcp": {
+      "command": "uv",
+      "args": [
+        "tool",
+        "run",
+        "--from",
+        "git+https://github.com/bee4come/plan-mcp.git",
+        "plan-mcp"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}"
+      }
+    }
+  }
+}

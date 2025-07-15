@@ -76,10 +76,60 @@ LOG_LEVEL=INFO
 
 ### Claude Code Integration
 
-Add to your Claude Code MCP settings:
+#### 🚀 Quick Integration (Recommended)
+
+Run directly from GitHub using `uv` without local installation:
 
 ```bash
-claude mcp add plan-mcp -- uvx plan-mcp
+# Team/project configuration (recommended)
+claude mcp add -s project plan-mcp uv tool run --from git+https://github.com/bee4come/plan-mcp.git plan-mcp
+```
+
+This creates a `.mcp.json` file in your project root. For secure API key management, edit the file:
+
+```json
+{
+  "mcpServers": {
+    "plan-mcp": {
+      "command": "uv",
+      "args": [
+        "tool",
+        "run",
+        "--from",
+        "git+https://github.com/bee4come/plan-mcp.git",
+        "plan-mcp"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}"
+      }
+    }
+  }
+}
+```
+
+#### Alternative Configuration Options
+
+**Personal global configuration:**
+```bash
+claude mcp add -s user plan-mcp uv tool run -e GEMINI_API_KEY=your_api_key --from git+https://github.com/bee4come/plan-mcp.git plan-mcp
+```
+
+**Local testing configuration:**
+```bash
+claude mcp add plan-mcp uv tool run -e GEMINI_API_KEY=your_api_key --from git+https://github.com/bee4come/plan-mcp.git plan-mcp
+```
+
+#### Managing MCP Services
+
+```bash
+# List all services
+claude mcp list
+
+# Get service details
+claude mcp get plan-mcp
+
+# Check status in Claude Code
+# Type /mcp command to view connection status
 ```
 
 ## 💻 Usage
