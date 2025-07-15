@@ -87,16 +87,32 @@ claude mcp add -s project plan-mcp -- uv tool run --from git+https://github.com/
 
 This creates a `.mcp.json` file in your project root. For secure API key management, edit the file:
 
-#### 🔧 Method 2: Local Installation
+#### 🔧 Method 2: Local Installation (Recommended)
 
-If you encounter issues with the direct method, install locally first:
+Install locally for reliable connection:
 
 ```bash
-# Install dependencies and add to Claude Code
-pip install mcp google-generativeai python-dotenv pydantic loguru rich
+# Clone and install dependencies
 git clone https://github.com/bee4come/plan-mcp.git
 cd plan-mcp
-claude mcp add -s project plan-mcp -- python -m plan_mcp.server
+pip install mcp google-generativeai python-dotenv pydantic loguru rich
+
+# Add to Claude Code  
+claude mcp add -s project plan-mcp -- python run_mcp.py
+```
+
+#### ✅ Verify Installation
+
+Check if the MCP server is working:
+
+```bash
+# List MCP servers
+claude mcp list
+
+# Check server details  
+claude mcp get plan-mcp
+
+# Test in Claude Code by typing: /mcp
 ```
 
 ```json
