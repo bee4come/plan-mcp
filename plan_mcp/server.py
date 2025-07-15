@@ -18,25 +18,14 @@ from .tools.execution_analyzer import ExecutionAnalyzer
 from .tools.project_planner import ProjectPlanner
 from .utils.logger import logger
 
-# 验证配置
-try:
-    config = get_config()
-    config.validate_config()
-except ValueError as e:
-    logger.error(f"配置错误: {e}")
-    logger.error("请确保您已经设置了 GEMINI_API_KEY 环境变量，或在项目根目录创建了 .env 文件。")
-    exit(1)
-
 # Create server instance
 server = Server("plan-mcp")
 
-# Initialize tools
-gemini_client = GeminiClient()
-project_planner = ProjectPlanner(gemini_client)
-code_reviewer = CodeReviewer(gemini_client)
-execution_analyzer = ExecutionAnalyzer(gemini_client)
-
-logger.info("Plan-MCP server initialized")
+# Global variables for tools (will be initialized in main)
+gemini_client = None
+project_planner = None
+code_reviewer = None
+execution_analyzer = None
 
 
 @server.list_tools()
@@ -188,7 +177,29 @@ async def handle_analyze_execution(arguments: dict[str, Any]) -> dict[str, Any]:
 
 async def main() -> None:
     """Main entry point for the stdio server."""
+    global gemini_client, project_planner, code_reviewer, execution_analyzer
+    
     logger.info("Starting Plan-MCP stdio server")
+    
+    # 验证配置
+    try:
+        config = get_config()
+        config.validate_config()
+    except ValueError as e:
+        logger.error(f"配置错误: {e}")
+        logger.error("请确保您已经设置了 GEMINI_API_KEY 环境变量，或在项目根目录创建了 .env 文件。")
+        return
+    
+    # Initialize tools
+    try:
+        gemini_client = GeminiClient()
+        project_planner = ProjectPlanner(gemini_client)
+        code_reviewer = CodeReviewer(gemini_client)
+        execution_analyzer = ExecutionAnalyzer(gemini_client)
+        logger.info("Plan-MCP tools initialized successfully")
+    except Exception as e:
+        logger.error(f"Failed to initialize tools: {e}")
+        return
 
     async with stdio_server() as (read_stream, write_stream):
         await server.run(read_stream, write_stream, server.create_initialization_options())

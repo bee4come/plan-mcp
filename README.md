@@ -82,7 +82,7 @@ Run directly from GitHub using `uv` without local installation:
 
 ```bash
 # Team/project configuration (recommended)
-claude mcp add -s project plan-mcp uv tool run --from git+https://github.com/bee4come/plan-mcp.git plan-mcp
+claude mcp add -s project plan-mcp -- uv tool run --from git+https://github.com/bee4come/plan-mcp.git plan-mcp
 ```
 
 This creates a `.mcp.json` file in your project root. For secure API key management, edit the file:
@@ -111,12 +111,12 @@ This creates a `.mcp.json` file in your project root. For secure API key managem
 
 **Personal global configuration:**
 ```bash
-claude mcp add -s user plan-mcp uv tool run -e GEMINI_API_KEY=your_api_key --from git+https://github.com/bee4come/plan-mcp.git plan-mcp
+claude mcp add -s user plan-mcp -e GEMINI_API_KEY=your_api_key -- uv tool run --from git+https://github.com/bee4come/plan-mcp.git plan-mcp
 ```
 
 **Local testing configuration:**
 ```bash
-claude mcp add plan-mcp uv tool run -e GEMINI_API_KEY=your_api_key --from git+https://github.com/bee4come/plan-mcp.git plan-mcp
+claude mcp add plan-mcp -e GEMINI_API_KEY=your_api_key -- uv tool run --from git+https://github.com/bee4come/plan-mcp.git plan-mcp
 ```
 
 #### Managing MCP Services
