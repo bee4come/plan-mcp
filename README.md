@@ -12,24 +12,71 @@ Plan-MCP acts as an AI-powered project architect that bridges Gemini's planning 
 
 ## 🚀 Features
 
-### 1. Project Planning (`plan_project`)
+Plan-MCP provides **complete MCP feature support**, making it one of the most comprehensive MCP servers available:
+
+### ✅ Complete MCP Feature Matrix
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| **Resources** | ✅ | File system access (file://, dir://, workspace://) |
+| **Prompts** | ✅ | 4 structured prompt templates for common tasks |
+| **Tools** | ✅ | 10 comprehensive tools for project management |
+| **Discovery** | ✅ | Dynamic tool discovery (handled by FastMCP) |
+| **Sampling** | ✅ | LLM text generation for documentation and tests |
+| **Roots** | ✅ | Workspace navigation and project root suggestions |
+| **Elicitation** | ✅ | Interactive user input collection |
+
+### 🔧 Core Tools
+
+#### 1. Project Planning (`plan_project`)
 - Break down complex requirements into structured phases and tasks
 - Generate detailed project plans with priorities and dependencies
 - Estimate effort and identify potential risks
 - Support for technical constraints and preferred tech stacks
 
-### 2. Code Review (`review_code`)
+#### 2. Code Review (`review_code`)
 - Comprehensive code quality analysis
 - Security vulnerability detection
 - Performance optimization suggestions
 - Best practices and design pattern recommendations
 - Language-agnostic support
 
-### 3. Execution Analysis (`analyze_execution`)
+#### 3. Execution Analysis (`analyze_execution`)
 - Debug runtime errors with root cause analysis
 - Provide specific code fixes with explanations
 - Evaluate if execution meets expected behavior
 - Guide iterative development with next steps
+
+#### 4. Directory Review (`review_directory`)
+- Complete project/directory analysis
+- Multi-file code quality assessment
+- Project structure recommendations
+- Security scanning across entire codebase
+
+### 🎯 Advanced Features
+
+#### Interactive Tools (Elicitation)
+- **Interactive Project Planning**: Collects user preferences and requirements dynamically
+- **Interactive Code Review**: Customizes review focus based on user needs
+
+#### LLM Sampling
+- **Documentation Generation**: Auto-generates comprehensive docs for code
+- **Test Generation**: Creates unit tests with proper assertions and edge cases
+
+#### File System Resources
+- **File Access**: Read individual files with `file://` URIs
+- **Directory Access**: Access entire directories with `dir://` URIs  
+- **Workspace Navigation**: Current workspace info with `workspace://current`
+
+#### Workspace Management (Roots)
+- **Workspace Roots**: Lists available workspace directories
+- **Project Suggestions**: Recommends appropriate project locations by type
+
+#### Prompt Templates
+- **Code Review Template**: Structured code review prompts
+- **Project Planning Template**: Interactive planning conversations
+- **Debug Assistant**: Systematic debugging guidance
+- **Architecture Review**: System architecture analysis
 
 ## 📋 Prerequisites
 
