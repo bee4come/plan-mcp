@@ -33,7 +33,7 @@ Plan-MCP acts as an AI-powered project architect that bridges Gemini's planning 
 
 ## 📋 Prerequisites
 
-- Python 3.11 or higher
+- Python 3.10 or higher
 - Google Gemini API key
 - Claude Code (for MCP integration)
 
@@ -76,7 +76,7 @@ LOG_LEVEL=INFO
 
 ### Claude Code Integration
 
-#### 🚀 Quick Integration (Recommended)
+#### 🚀 Method 1: Direct from GitHub (Recommended)
 
 Run directly from GitHub using `uv` without local installation:
 
@@ -86,6 +86,18 @@ claude mcp add -s project plan-mcp -- uv tool run --from git+https://github.com/
 ```
 
 This creates a `.mcp.json` file in your project root. For secure API key management, edit the file:
+
+#### 🔧 Method 2: Local Installation
+
+If you encounter issues with the direct method, install locally first:
+
+```bash
+# Install dependencies and add to Claude Code
+pip install mcp google-generativeai python-dotenv pydantic loguru rich
+git clone https://github.com/bee4come/plan-mcp.git
+cd plan-mcp
+claude mcp add -s project plan-mcp -- python -m plan_mcp.server
+```
 
 ```json
 {
