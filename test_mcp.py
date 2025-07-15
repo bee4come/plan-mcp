@@ -70,6 +70,24 @@ async def test_mcp_server():
         print("✅ Project planning tool works!")
         print(f"Generated plan with {len(result.get('phases', []))} phases")
         
+        # Test directory review tool
+        print("\n🧪 Testing directory review tool...")
+        dir_args = {
+            "directory_path": str(Path(__file__).parent),
+            "focus_areas": ["code quality", "security"]
+        }
+        
+        dir_result = await server_module.handle_review_directory(dir_args)
+        print("✅ Directory review tool works!")
+        print(f"Reviewed directory: {dir_result.get('directory_path')}")
+        
+        # Test resource reading
+        print("\n🧪 Testing file system resources...")
+        test_uri = f"file://{Path(__file__).parent}"
+        resource_content = await server_module.read_resource(test_uri)
+        print("✅ File system resource reading works!")
+        print(f"Read {len(resource_content)} characters from directory")
+        
         print("\n🎉 All tests passed! MCP server is working correctly.")
         return True
         

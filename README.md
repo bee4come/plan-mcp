@@ -174,9 +174,20 @@ Use the plan_project tool to create a plan for building a REST API for task mana
 Use the review_code tool to review this Python function for security and performance issues: [paste code]
 ```
 
-### 3. Analyze execution errors
+### 3. Review entire directory/project
+```
+Use the review_directory tool to review my entire Python project at /path/to/project for security and code quality issues
+```
+
+### 4. Analyze execution errors
 ```
 Use the analyze_execution tool to help me debug this error: [paste code and error]
+```
+
+### 5. Access files and directories
+```
+You can now ask Claude to analyze files directly:
+"Please review the code in file:///path/to/my/project and suggest improvements"
 ```
 
 ## 🏗️ Architecture
