@@ -33,7 +33,7 @@ Plan-MCP acts as an AI-powered project architect that bridges Gemini's planning 
 
 ## 📋 Prerequisites
 
-- Python 3.9 or higher
+- Python 3.11 or higher
 - Google Gemini API key
 - Claude Code (for MCP integration)
 
