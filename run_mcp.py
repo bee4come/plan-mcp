@@ -3,7 +3,6 @@
 
 import os
 import sys
-import asyncio
 from pathlib import Path
 
 def setup_environment():
@@ -27,14 +26,14 @@ def setup_environment():
                     value = value.strip().strip('"').strip("'")
                     os.environ[key] = value
 
-async def main():
+def main():
     """Main entry point."""
     setup_environment()
     
     try:
-        # Import after environment setup
-        from plan_mcp.server import main as server_main
-        await server_main()
+        # Import and run FastMCP server
+        from plan_mcp.fastmcp_server import mcp
+        mcp.run()
     except KeyboardInterrupt:
         sys.stderr.write("Server interrupted\n")
     except Exception as e:
@@ -42,4 +41,4 @@ async def main():
         sys.exit(1)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
