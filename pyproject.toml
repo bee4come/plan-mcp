@@ -48,7 +48,7 @@ Documentation = "https://github.com/bee4come/plan-mcp#readme"
 "Bug Tracker" = "https://github.com/bee4come/plan-mcp/issues"
 
 [project.scripts]
-plan-mcp = "run_mcp:main"
+plan-mcp = "plan_mcp.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
